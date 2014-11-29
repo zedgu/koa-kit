@@ -1,0 +1,47 @@
+{
+  "name": "koa-kit",
+  "version": "0.0.0",
+  "description": "A Koa Framework Kit",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec --require should --harmony test/* --bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zedgu/koa-kit.git"
+  },
+  "keywords": [
+    "koa",
+    "http",
+    "https",
+    "web",
+    "application",
+    "framework",
+    "modules",
+    "middleware",
+    "generators",
+    "es6",
+    "boilerplate",
+    "mvc",
+    "router"
+  ],
+  "author": {
+    "name": "Zed Gu",
+    "email": "z@zgu.me",
+    "url": "http://zgu.me"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zedgu/koa-kit/issues"
+  },
+  "homepage": "https://github.com/zedgu/koa-kit",
+  "dependencies": {
+    "debug": "^2.1.0",
+    "koa": "^0.13.0",
+    "koa-body": "^0.4.0",
+    "koa-conditional-get": "^1.0.2",
+    "koa-csrf": "^2.1.3",
+    "koa-etag": "^2.0.0",
+    "koa-logger": "^1.2.2"
+  }
+}
