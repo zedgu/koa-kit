@@ -1,4 +1,7 @@
 var koa = require('koa');
+var debug = require('debug');
+
+var libs = ['etag', 'security', 'server'];
 
 module.exports = function kit(options) {
   options = options || {};
@@ -10,13 +13,9 @@ module.exports = function kit(options) {
     app.use(require('koa-logger')(options.logger));
   }
 
-  if (options.dbug) {
-    app.dbug = require('debug')(options.dbug);
-  }
-
-  for (var part in options) {
-    if (options[part] !== false) {
-      require('./lib/' + part)(app, options[part]);
+  for (var i = libs.length - 1; i >= 0; i--) {
+    if (options[libs[i]] !== false) {
+      require('./lib/' + libs[i])(app, options[libs[i]], debug(options.debug || 'koa:kit'));
     }
   }
 
@@ -25,10 +24,6 @@ module.exports = function kit(options) {
   var koaBody = options.body || {};
   koaBody.formidable = koaBody.formidable || {uploadDir: 'public'};
   app.use(require('koa-body')(koaBody));
-
-  if (options.server !== false) {
-    require('./lib/server')(app, options.server);
-  }
 
   return app;
 }
