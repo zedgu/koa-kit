@@ -1,6 +1,6 @@
 {
   "name": "koa-kit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Koa Framework Kit",
   "main": "index.js",
   "scripts": {
