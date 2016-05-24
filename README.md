@@ -4,6 +4,8 @@ koa-kit
 A simple framework with functional tools for koa.
 
 [![NPM version][npm-image]][npm-url] 
+[![build status][travis-image]][travis-url] 
+[![Test coverage][coveralls-image]][coveralls-url]
 [![NPM Monthly Downloads][npm-download]][npm-url]
 [![Dependencies][david-image]][david-url]
 [![License][license-image]][license-url]
@@ -127,6 +129,10 @@ this.assertEqual(obj, 'userName fullName');
 
 [npm-image]: https://img.shields.io/npm/v/koa-kit.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/koa-kit
+[travis-image]: https://img.shields.io/travis/zedgu/koa-kit.svg?style=flat-square
+[travis-url]: https://travis-ci.org/zedgu/koa-kit
+[coveralls-image]: https://img.shields.io/coveralls/zedgu/koa-kit.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/zedgu/koa-kit?branch=master
 [david-image]: http://img.shields.io/david/zedgu/koa-kit.svg?style=flat-square
 [david-url]: https://david-dm.org/zedgu/koa-kit
 [license-image]: http://img.shields.io/npm/l/koa-kit.svg?style=flat-square
