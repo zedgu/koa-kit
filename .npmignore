@@ -1,0 +1,5 @@
+docs
+test
+coverage
+.travis.yml
+lib/server.js

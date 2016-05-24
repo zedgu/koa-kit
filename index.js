@@ -1,30 +1,18 @@
-var koa = require('koa');
-var debug = require('debug');
+'use strict';
 
-var libs = ['etag', 'security', 'server'];
+const koa = require('koa');
+const debug = require('debug');
+
 
 module.exports = function kit(options) {
+  const libs = ['context', 'kits', 'security'];
+  const app = koa();
+
   options = options || {};
 
-  var app = koa();
-  app.env = process.env.NODE_ENV || 'development';
-
-  require('koa-http-errors')(app, options.onerror);
-  if (app.env === 'development') {
-    app.use(require('koa-logger')(options.logger));
+  while(libs.length) {
+    require('./lib/' + libs.shift())(app, options, debug(options.debug || 'koa:kit'));
   }
-
-  for (var i = libs.length - 1; i >= 0; i--) {
-    if (options[libs[i]] !== false) {
-      require('./lib/' + libs[i])(app, options[libs[i]], debug(options.debug || 'koa:kit'));
-    }
-  }
-
-  require('koa-csrf')(app);
-
-  var koaBody = options.body || {};
-  koaBody.formidable = koaBody.formidable || {uploadDir: 'public'};
-  app.use(require('koa-body')(koaBody));
 
   return app;
 }
