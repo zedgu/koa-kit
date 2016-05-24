@@ -38,8 +38,8 @@ const app = kk({
   logger: true, // <- by default, false for not using, only for 'development' env
   debug: 'koa:kit', // <- by default, name for debug (https://www.npmjs.com/package/debug)
   assertOK: 'assertOK', // <- by default, false for not using, see APIs - ctx.assertOK
-  assertEqual: 'assertEqual' // <- by default, false for not using, see APIs - ctx.assertOK
-  assertQuery: 'assertQuery' // <- by default, false for not using, see APIs - ctx.assertOK
+  assertEqual: 'assertEqual' // <- by default, false for not using, see APIs - ctx.assertEqual
+  assertQuery: 'assertQuery' // <- by default, false for not using, see APIs - ctx.assertQuery
 });
 ```
 
