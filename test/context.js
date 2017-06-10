@@ -3,10 +3,10 @@
 const kk = require('../');
 const agent = require('supertest');
 
-const app = kk();
+const app = kk({csrf:false});
 const request = agent(app.callback());
 
-app.use(function* router(next) {
+app.use(async function router(ctx, next) {
   const tests = {
     'Number': Number,
     'RegExp': /a[\w]{4}3/,
@@ -15,30 +15,30 @@ app.use(function* router(next) {
     },
     'object': {a: 'abc', b: {c: Object}}
   };
-  const actual = this.request.body.actual;
-  const object = this.request.body.object;
-  const expected = object ? tests[object] : this.request.body.expected;
-  const statusCode = this.request.body.statusCode;
-  const statusMessage = this.request.body.statusMessage;
-  const errorProperties = this.request.body.errorProperties;
+  const actual = ctx.request.body.actual;
+  const object = ctx.request.body.object;
+  const expected = object ? tests[object] : ctx.request.body.expected;
+  const statusCode = ctx.request.body.statusCode;
+  const statusMessage = ctx.request.body.statusMessage;
+  const errorProperties = ctx.request.body.errorProperties;
   
-  switch (this.path) {
+  switch (ctx.path) {
     case '/ok':
-      this.assertOK(actual === 'err' ? new Error() : actual);
+      ctx.assertOK(actual === 'err' ? new Error() : actual);
       break;
     case '/equal':
-      this.assertEqual(actual, expected, statusCode, statusMessage, errorProperties);
+      ctx.assertEqual(actual, expected, statusCode, statusMessage, errorProperties);
       break;
     case '/query':
-      this.assertQuery(actual, expected, statusCode, statusMessage, errorProperties);
+      ctx.assertQuery(actual, expected, statusCode, statusMessage, errorProperties);
       break;
     case '/argument':
-      this.assertQuery(actual);
+      ctx.assertQuery(actual);
       break;
   }
 
-  this.body = 'ok';
-  yield next;
+  ctx.body = 'ok';
+  await next();
 });
 describe('ctx.assertOK', function() {
   it('pass the assertion when value is "OK"', function(done) {

@@ -3,9 +3,9 @@
 const kk = require('../');
 const agent = require('supertest');
 
-function* html(next) {
-  this.body = '<html></html>';
-  yield next;
+async function html(ctx, next) {
+  ctx.body = '<html></html>';
+  await next();
 }
 // describe('app.listen', function() {
 //   it('should listen 9030 port by default', function(done) {
@@ -64,10 +64,10 @@ describe('configuration testing', function() {
       body: false
     });
     const request = agent(app.callback());
-    app.use(function*(next) {
-      this.body = [this.assertOK, this.assertQuery, this.assertEqual, this.assertCSRF, this.request.body]
-      this.body.should.eql([undefined, undefined, undefined, undefined, undefined]);
-      yield next;
+    app.use(async function(ctx, next) {
+      ctx.body = [ctx.assertOK, ctx.assertQuery, ctx.assertEqual, ctx.assertCSRF, ctx.request.body]
+      ctx.body.should.eql([undefined, undefined, undefined, undefined, undefined]);
+      await next();
     });
 
     request

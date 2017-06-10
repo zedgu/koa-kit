@@ -3,6 +3,8 @@ koa-kit
 
 A simple framework with functional tools for koa.
 
+> Support Koa@2.x from 1.1.0
+
 [![NPM version][npm-image]][npm-url] 
 [![build status][travis-image]][travis-url] 
 [![Test coverage][coveralls-image]][coveralls-url]
@@ -34,6 +36,7 @@ const app = kk({
   xframe: 'SAMEORIGIN', // <- by default, false for not setting
   hsts: false, // <- by default, true for set('Strict-Transport-Security', 'max-age=7776000; includeSubDomains'). But setting this in nginx is better.
   context: true, // <- by default, false for not using
+  session: ['kk-key'], // <- by default, session secret keys, false for not using
   etag: true, // <- by default, false for not using
   logger: true, // <- by default, false for not using, only for 'development' env
   debug: 'koa:kit', // <- by default, name for debug (https://www.npmjs.com/package/debug)

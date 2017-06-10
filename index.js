@@ -3,10 +3,9 @@
 const koa = require('koa');
 const debug = require('debug');
 
-
 module.exports = function kit(options) {
   const libs = ['context', 'kits', 'security'];
-  const app = koa();
+  const app = new koa();
 
   options = options || {};
 
